@@ -7,13 +7,16 @@
     <div class="blog-header">
         <ion-icon name="create-outline" class="icons"></ion-icon>
         <h1>{{ p.title }}</h1>
-        <p>Postado por {{ p.user }}. </p> <p><ion-icon name="chatbubbles-outline"></ion-icon> {{ p.post_comments.count }} comments </p> <p id="post_likes"><ion-icon name="heart-outline"></ion-icon> {{p.likes.count}} likes</p> 
+        <div class="blog-header-details">
+            <p>Posted by {{ p.user }}. </p> <p><ion-icon name="chatbubbles-outline"></ion-icon></p><p> {{ p.post_comments.count }} comments </p> <p><ion-icon name="heart-outline"></ion-icon></p><p id="post_likes"> {{p.likes.count}} likes</p> 
+        </div>
+    </div>
+    <div class="like-btn-div"><button data-postid="{{p.id}}" class="like-btn" id="like_post_btn"><ion-icon name="heart-outline"></ion-icon></button>
     </div>
     <div class="blog-text">
         <h2>Sobre o projeto...</h2><!-- <ion-icon name="heart" class="icons like-icon"></ion-icon>  --> 
         <!-- <span class="material-symbols-outlined"> -->
         {% if user.is_authenticated %}
-        <button data-postid="{{p.id}}" class="" id="like_post_btn">like</button>
         {% else %}
         <p>Login to like this post</p>
         {% endif %}
