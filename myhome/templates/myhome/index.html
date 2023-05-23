@@ -11,15 +11,48 @@
     <h2>Besides jumping air-planes, what do I like ?.</h2>
     <p>I love technology, problem solving and learning new things. I have worked as a product developer and commercial director. Now I am a software engineering student and chaning my career to work as a developer. Check my curriculum and projects to see more!</p>
 </div>
+<div class="blog-languages">
+<!--     <h2>Here You will find projects developed with</h2>
+ -->    <div class="language-icons">
+        <i class="devicon-java-plain"></i>
+        <i class="devicon-css3-plain colored"></i>          
+        <i class="devicon-lua-plain-wordmark colored"></i>          
+        <i class="devicon-python-plain colored"></i>          
+        <i class="devicon-mysql-plain-wordmark"></i>     
+        <i class="devicon-django-plain-wordmark colored"></i>               
+        <i class="devicon-c-plain colored"></i>          
+        <i class="devicon-react-original colored"></i>          
+        <i class="devicon-javascript-plain colored"></i>
+        <i class="devicon-git-plain-wordmark"></i>
+    </div>   
+</div>
 <div class="blog-github-link">
     <ion-icon class ="github-icon" name="logo-github"></ion-icon>
-    <p>https://github.com/nicolodijunior</p>
+    <p><a href="https://github.com/nicolodijunior" target="_bank">https://github.com/nicolodijunior</a></p>
 </div>
 
  
 
-<h2>How about seeing my projects ?</h2>
+<h2>Last projects</h2>
 
+<div class="posts-miniatures">
+{% for p in last_posts %}
+    <div class="post-mini-item">
+        <img src="{{p.img_path}}">
+        <span class="post-mini-details">{{p.date_time}}</span>
+        <h5>Tags: {{p.tags}}</h5>
+        <p class="post-mini-text"> <b>{{p.title}}:</b>   {{ p.text|truncatewords:12 }} </p>
+        <p class="post-mini-text"><a href="{% url 'post' %}"><ion-icon name="add-circle-outline"></ion-icon> veja mais</a></p>
+    </div>
+{% endfor %}
+<div class="post-mini-item">
+    <img src="http://cbissn.ibict.br/images/phocagallery/galeria2/thumbs/phoca_thumb_l_image03_grd.png">
+    <span class="post-mini-details">10 MAY 2023 - Network</span>
+    <h5>Developed with Python, Javascript, CSS and HTML</h5>
+    <p class="post-mini-text">Este projeto foi desenvolvido para o curso cs 50 w, e consiste em uma rede social. </p>
+    <a class=post-mini-text href=""><ion-icon name="add-circle-outline"></ion-icon> See more</a>
+</div>
+</div><!-- 
 <div class="posts-miniatures">
     <div class="post-mini-item">
         <img src="http://cbissn.ibict.br/images/phocagallery/galeria2/thumbs/phoca_thumb_l_image03_grd.png">
@@ -41,7 +74,7 @@
         <h5>Developed with Python, Javascript, CSS and HTML</h5>
         <p class="post-mini-text">Este projeto foi desenvolvido para o curso cs 50 w, e consiste em uma rede social. </p>
         <p>veja mais</p>
-    </div>
+    </div> -->
     
 </div>
 {% endblock %}
