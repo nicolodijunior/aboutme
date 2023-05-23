@@ -14,9 +14,20 @@ from django.urls import reverse
 
 def index(request):
     posts_qty = Post.objects.all().count()
+    last_posts = Post.objects.order_by("-id")[:3]
     return render(request, "myhome/index.html", {
         "posts_qty":posts_qty,
+        "last_posts":last_posts,
     })
+
+def post(request):
+    post_id = 1
+    posts = Post.objects.filter(id=post_id)
+    categories = Category.objects.all()
+    return render(request, "myhome/blog.html", {
+            "posts":posts,
+            "categories":categories,
+        })
 
 def blog(request, category):
     
