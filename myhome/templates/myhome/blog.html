@@ -1,0 +1,91 @@
+{% extends "myhome/layout.html" %}
+
+{% block content %}
+<div class="blog-div">
+    <div class="blog-menu"><a href="{% url 'blog' category='all' %}">All</a> {% for c in categories %} | <a href="{% url 'blog_cat' c.id %}"> {{c.name}} </a>{% endfor %}</div>
+    {% for p in posts %}
+    <div class="blog-header">
+        <ion-icon name="create-outline" class="icons"></ion-icon>
+        <h1>{{ p.title }}</h1>
+        <p>Postado por {{ p.user }}. </p> <p><ion-icon name="chatbubbles-outline"></ion-icon> {{ p.post_comments.count }} comments </p> <p id="post_likes"><ion-icon name="heart-outline"></ion-icon> {{p.likes.count}} likes</p> 
+    </div>
+    <div class="blog-text">
+        <h2>Sobre o projeto...</h2><!-- <ion-icon name="heart" class="icons like-icon"></ion-icon>  --> 
+        <!-- <span class="material-symbols-outlined"> -->
+        {% if user.is_authenticated %}
+        <button data-postid="{{p.id}}" class="" id="like_post_btn">like</button>
+        {% else %}
+        <p>Login to like this post</p>
+        {% endif %}
+        <!-- </span> -->
+        <p> {{ p.text }}</p>
+    </div>
+    <div class="blog-img">
+        <img src="{{p.img_path}}">
+    </div>
+    <div class="blog-github-link">
+        <ion-icon class ="github-icon" name="logo-github"></ion-icon>
+        <p>{{ p.github_link }}</p>
+    </div>
+    <div class="blog-video">
+        <iframe width="560" height="315" src="{{p.video_path}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>
+    
+    <div class="blog-tags">
+        <p>Python</p><p>HTML</p><p>CSS</p><p>Django</p><p>SQL</p>
+    </div>
+        <div class="center">
+            <div class="div-pagination">
+                {% if posts.has_previous %}
+                    <a class="page-link" href="?page=1">First</a>
+                    <a class="page-link" href="?page={{ posts.previous_page_number }}"><ion-icon name="arrow-back-circle-outline"></ion-icon></a>
+                {% endif %}
+                <a class="page-link" href="#">Page {{ posts.number }} of {{ posts.paginator.num_pages }}.</a>
+                {% if posts.has_next %}
+                    <a class="page-link" href="?page={{ posts.next_page_number }}"><ion-icon name="arrow-forward-circle-outline"></ion-icon></a>
+                    <a class="page-link" href="?page={{ posts.paginator.num_pages }}">Last</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% if user.is_authenticated %}
+    <div class="comment-form">
+        <form action="{% url 'comment' p.id %}" method="POST">
+            {% csrf_token %}
+            <textarea id="comment" name="comment" placeholder="Type your comment here" class=""></textarea>
+            <div class="form-inner-div">
+            <button type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+    {% else %}
+    <div class="message"><h4>Login to comment!</h4></div>
+    {% endif %}
+    <div class="comments">
+    {% for comment in p.get_comments %}
+            <div class="comment">
+                <h3>{{ comment.user.username }}</h3><p>in {{ comment.date_time }}</p>
+                <p>{{ comment.text }}</p>
+                <p>Likes: {{ comment.likes.count }}</p>
+            </div>
+        {% empty %}
+            <p>Be the first to comment.</p>
+    {% endfor %}
+    </div>
+    <!-- 
+    <div class="comments">
+        <div class="comment">
+            <h3>Fulado de tal</h3><p>in 03 Mar 2023</p>
+        </div>
+        <div class="comment">
+            <h3>Fulado de tal</h3><p>in 03 Mar 2023</p>
+            <p>This is a comment!</p>
+        </div>
+        <div class="comment">
+            <h3>Fulado de tal</h3><p>in 03 Mar 2023</p>
+            <p>This is a comment!</p>
+        </div>
+    </div> -->
+    {% endfor %}
+</div>
+{% endblock %}

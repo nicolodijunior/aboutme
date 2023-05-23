@@ -1,0 +1,30 @@
+{% extends "myhome/layout.html "%}
+
+{% block content %}
+<div class="log_area">
+    <div class="blog-header">
+        <ion-icon name="log-in-outline" class="icons"></ion-icon>
+        <h1>Login</h1>
+        {% if message %}
+            <div>{{ message }}</div>
+        {% endif %}
+    </div>
+    <form class="log_form" action="{% url 'login_v' %}" method="post">
+        <div class="form-outer">
+            {% csrf_token %}
+            <div class="form-container">
+                <label for="username">Username </label>
+                <input autofocus class="log_info" type="text" name="username" id="username" placeholder="Username">
+                <label for="password">Password </label>
+                <input id="password" class="log_info" type="password" name="password" placeholder="Password"> 
+            </div>  
+        </div> 
+        <div class="submit">  
+            <input class="post_btn login_btn" type="submit" value="Login">
+        </div>      
+    </form>
+    <div class="form_footer"> 
+        <p>Don't have an account? <a class="profile_link" href="{% url 'register' %}">Register here.</a></p>
+    </div>
+</div>
+{% endblock %}

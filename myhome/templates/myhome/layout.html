@@ -1,0 +1,60 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static 'myhome/style.css' %}" rel="stylesheet">   
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;500;600;700&display=swap" rel="stylesheet">
+    {% block script %} 
+         <script src="{% static 'myhome/myhome.js' %}"></script>  
+    {% endblock %}
+    <title>Welcome!</title>
+</head>
+<body>
+    <div class="page-container">
+        <aside>
+            <h1>J. Nicolodi Junior´s</h1>
+            <h3>Portfolio and more...</h3>
+            <h4>B. S. Economics</h4>
+            <h4>B. S. Software Engineering (2025)</h4>            
+            <ul id="networks-list">
+                <li><a href="https://www.linkedin.com/in/jnicolodijunior/" target="_blank"><ion-icon name="logo-linkedin"></ion-icon></a></li>                
+                <li><a href="https://github.com/nicolodijunior" target="_blank"><ion-icon name="logo-github"></ion-icon></a></li>               
+                <li><a href="https://wa.me/51982540099?text=urlencodedtext" target="_blank"><ion-icon name="logo-whatsapp"></ion-icon></a></li>
+                <li><a href="https://twitter.com/nicolodijunior" target="_blank"><ion-icon name="logo-twitter"></ion-icon></a></li>
+            </ul>
+            <h4>jnicolodijunior@gmail.com</h4>            
+            
+            <ul>
+                <li><a href="{% url 'index' %}">Bio</a></li>
+                <li>Courses</li>
+                <li>CV</li>
+                <li>Projects</li>
+                <li>Events</li>
+                <li><a href="{% url 'blog' category='all' %}">Blog</a></li>
+            </ul>
+
+            {% if not user.is_authenticated %}
+                <p><ion-icon name="log-in-outline"></ion-icon><a href="{% url 'login_v' %}">Login</a></p>
+                <p><ion-icon name="clipboard-outline"></ion-icon><a href="{% url 'register' %}">Register</a></p>
+            {% else %}
+                <p>Logged as {{user.username}}</p>
+                <a href="{% url 'logout_v' %}">Logout</a>               
+                
+            {% endif %}
+        </aside>
+        <main>
+            {% block content %}
+            {% endblock %}
+        </main>    
+    </div>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<!--     <script src="{% static 'myhome/myhome.js' %}"></script>
+ --></body>
+</html>

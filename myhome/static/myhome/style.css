@@ -1,0 +1,343 @@
+/*
+ --- COLORS
+    Text First Color: f555
+    Text Second color: f07474
+
+    Background Shade of gray: #f7f7f7 #e9ecef #dee2e6 #ced4da
+ --- TPOGRAPHY SYSTEM
+ *Always 75 characteres per line
+
+  For normal text
+    16 / 18 / 20 / 24 / 30 
+    400 or 500
+    line height 1.5 - 2 (smaller or longer the text, the larger the line height)
+
+  Long text (like a blog post)
+    20 / 24 / 30 
+    400 or 500
+
+    Headlines
+    52 / 62 / 74 / 86 / 98 
+    600+
+    line height below 1.5 (smaller or longer the text, the larger the line height)
+    (decrease spacing in headlines if it looks unnaturam (Ex: -3.5px)
+
+
+
+ - Font Size (px)
+        10 / 12 / 14 // 36 / 44 / 52 / 62 / 74 / 86 / 98
+
+    - Font weights
+    Default: 400
+    Medium: 500
+    Semi-bold: 600
+    Bold: 700
+
+    - Line heights
+    Default: 1
+    Small: 1.05
+    Medium: 1.2
+    Paragraph default: 1.6
+
+    - Letter spacing
+    -0.5px
+    0.75px  
+
+
+
+
+*/
+
+/* GENERAL */
+
+*{
+    padding:0;
+    margin:0;
+    box-sizing:border-box;
+}
+
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-family: 'Roboto Slab', serif;
+    line-height: 1;
+    font-weight: 400;
+    color:#555;
+}
+
+.page-container {    
+    display: flex;
+    justify-content: center;
+    max-width: 120rem;
+    margin: 3rem auto 0;
+}
+
+a:link, a:visited {
+    text-decoration: none;
+    color: inherit;
+}
+
+a:hover, a:active {
+    text-decoration: none;
+    color: #f07474;
+}
+
+/* ASIDE */
+
+aside {
+    padding: 2rem;
+    margin: 0.3rem;
+}
+
+h1 {
+    font-size: 3rem;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+h3 {
+    font-size: 2rem;
+    margin-bottom: 3.5rem;
+}
+
+h4 {
+    font-size: 2.1rem;
+    margin-bottom: 0.95rem;
+    line-height: 1;
+    font-weight: 400;
+}
+
+p{
+    margin: 1rem 0 1rem 0;
+    font-size: 2.1rem;
+}
+
+ul {
+    margin-top: 7rem;
+    margin-bottom: 4rem;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap:0.8rem;
+    font-size: 2.1rem;
+    font-weight: 500;
+}
+
+#networks-list {
+    display: flex;
+    flex-direction: row;
+}
+
+/* ABOUT ME */
+
+main {
+    padding: 2rem;
+}
+
+.bio-img {
+    max-width: 500px;
+    margin-top: 4rem;
+}
+
+/* POST MINATURES */
+
+.posts-miniatures {
+    display: flex;
+    max-width: 100%;
+    column-gap: 2rem;
+}
+
+.post-mini-item img {
+    width:100%;
+    display: block;
+}
+
+.post-mini-item {
+    margin-top: 4rem;
+    box-shadow: 0 1.2rem 2.4rem rgba(0, 0, 0, 0.075);
+    transition: all 0.4s;
+    background-color: #f7f7f7;
+}
+
+.post-mini-item:hover {
+    transform: translateY(-1.2rem);
+    box-shadow: 0 2.0rem 4.2rem rgba(0, 0, 0, 0.0350);
+}
+
+.post-mini-details {
+    background-color: #363636;
+    color:#fff;
+    text-transform: uppercase;
+    font-weight: 700;
+    width: 100%;
+    letter-spacing: 0.1rem;
+    font-size: 1.2rem;
+    padding: 1.2rem;
+    display: block;
+}
+
+h5 {
+    line-height: 1.25rem;
+    font-weight: 700;
+    letter-spacing: 0.1rem;
+    text-transform: uppercase;
+    color: #363636;
+    padding: 1.2rem;
+    font-size: 1rem;
+}
+
+.post-mini-text{
+    padding: 1.2rem;
+}
+
+.icons {
+    font-size: 5rem;
+}
+
+/* BLOG PAGE */
+
+.blog-menu {
+    text-align: center;
+    font-size: 2rem;
+    margin-top: 2rem;
+    margin-bottom: 4rem;
+}
+
+.like-icon{
+    color: #f07474;
+}
+
+h2 {
+    font-size: 2.4rem;
+    font-weight: 500;
+    margin-bottom: 4rem;
+}
+
+.blog-header {
+    margin-bottom: 4rem;
+    text-align: center;
+}
+
+.blog-img {
+    text-align: center;
+    margin-bottom:4rem;
+}
+
+.blog-img img{
+    max-width: 100%;
+
+}
+
+.blog-text {
+    padding: 4rem;
+    margin-bottom: 4rem;
+    background-color: #e9ecef;
+}
+
+.blog-video {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.blog-github-link{    
+    border-left: solid 2rem #f07474;
+    background-color: #e9ecef;
+    padding: 4rem;
+    display: flex;
+    gap:2rem;
+    align-items: center;
+    margin-bottom: 4rem;
+}
+
+.blog-div {
+    
+}
+
+.comment-form {
+    /* background-color: #f07474; */
+    display: flex;
+    justify-content: center;
+    margin-bottom: 4rem;
+}
+
+form {
+    width: 90%;
+    /* background-color: aqua; */
+    text-align: center;
+}
+
+
+.comment-form textarea {
+    min-height: 15rem;
+    border: 1px solid #000;
+    width: 100%;
+    margin-bottom:2rem;
+    margin-top: 2rem;
+}
+
+.form-inner-div {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.comment {
+    border-bottom: 1px solid #000;
+}
+
+.blog-tags {
+    margin-bottom: 4rem;
+}
+
+
+.github-icon {
+    font-size: 5rem;
+}
+button, button:link, button:visited {
+    padding:1rem 4rem;
+    font-weight: 600;
+    font-size: 1.5rem;
+    cursor:pointer;
+    border-radius: 9px;
+    text-decoration: none;
+    display:inline-block;
+    transition: all 0.3s;
+    border:none;
+    font-family: inherit;
+    background-color: #f07474;
+    color: #fff;
+}
+
+/* PAGINATOR */
+.center {
+    display: flex;
+    justify-content: center;
+}
+
+.div-pagination {
+    font-size: 2rem;
+    padding: 1rem;
+    display: flex;
+    gap:1rem;
+    margin-bottom: 2rem;
+    color: #555;
+    font-weight: 500;
+}
+
+.page-link:link, .page-link:visited {
+    text-decoration: none;
+    color:#567;
+}
+.page-link:hover, .page-link:active {
+    text-decoration: none;
+    color:#567;
+}
+
+/* LOG AND REGISTER */
+
+.log_area {
+    
+}

@@ -1,0 +1,47 @@
+{% extends "myhome/layout.html" %}
+
+{% block content %}
+<div class="blog-header">
+    <ion-icon name="person-outline" class="icons"></ion-icon>
+    <h1>About me</h1>
+    <p>Updated on May 2023. <ion-icon name="create-outline"></ion-icon> Total of {{ posts_qty }} posts </p>
+    <img src="..\static\myhome\profile.png" class="bio-img">
+</div>
+<div class="blog-text">
+    <h2>Besides jumping air-planes, what do I like ?.</h2>
+    <p>I love technology, problem solving and learning new things. I have worked as a product developer and commercial director. Now I am a software engineering student and chaning my career to work as a developer. Check my curriculum and projects to see more!</p>
+</div>
+<div class="blog-github-link">
+    <ion-icon class ="github-icon" name="logo-github"></ion-icon>
+    <p>https://github.com/nicolodijunior</p>
+</div>
+
+ 
+
+<h2>How about seeing my projects ?</h2>
+
+<div class="posts-miniatures">
+    <div class="post-mini-item">
+        <img src="http://cbissn.ibict.br/images/phocagallery/galeria2/thumbs/phoca_thumb_l_image03_grd.png">
+        <span class="post-mini-details">10 MAY 2023 - Network</span>
+        <h5>Developed with Python, Javascript, CSS and HTML</h5>
+        <p class="post-mini-text">Este projeto foi desenvolvido para o curso cs 50 w, e consiste em uma rede social. </p>
+        <p><a href="">veja mais</a></p>
+    </div>
+    <div class="post-mini-item">
+        <img src="http://cbissn.ibict.br/images/phocagallery/galeria2/thumbs/phoca_thumb_l_image03_grd.png">
+        <span class="post-mini-details">10 MAY 2023 - Network</span>
+        <h5>Developed with Python, Javascript, CSS and HTML</h5>
+        <p class="post-mini-text">Este projeto foi desenvolvido para o curso cs 50 w, e consiste em uma rede social. </p>
+        <p>veja mais</p>
+    </div>
+    <div class="post-mini-item">
+        <img src="http://cbissn.ibict.br/images/phocagallery/galeria2/thumbs/phoca_thumb_l_image03_grd.png">
+        <span class="post-mini-details">10 MAY 2023 - Network</span>
+        <h5>Developed with Python, Javascript, CSS and HTML</h5>
+        <p class="post-mini-text">Este projeto foi desenvolvido para o curso cs 50 w, e consiste em uma rede social. </p>
+        <p>veja mais</p>
+    </div>
+    
+</div>
+{% endblock %}
