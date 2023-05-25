@@ -33,10 +33,7 @@
             
             <ul>
                 <li><a href="{% url 'index' %}">Bio</a></li>
-                <li>Courses</li>
-                <li>CV</li>
-                <li>Projects</li>
-                <li>Events</li>
+                <li><a href="{% url 'loadcv' %}">CV</a></li>
                 <li><a href="{% url 'blog' category='all' %}">Blog</a></li>
             </ul>
 
@@ -45,7 +42,7 @@
                 <p><ion-icon name="clipboard-outline"></ion-icon><a href="{% url 'register' %}">Register</a></p>
             {% else %}
                 <p>Logged as {{user.username}}</p>
-                <a href="{% url 'logout_v' %}">Logout</a>               
+                <p><ion-icon name="log-out-outline"></ion-icon><a href="{% url 'logout_v' %}">Logout</a></p>
                 
             {% endif %}
         </aside>

@@ -1,0 +1,17 @@
+{% extends "myhome/layout.html" %}
+
+{% block content %}
+{% load static %}
+<div class="blog-header">
+    <ion-icon name="person-outline" class="icons"></ion-icon>
+    <h1>My Curriculum</h1>
+    <p>Updated on May 2023</p>
+</div>
+<iframe src="{% static 'myhome/pdf/mycv.pdf' %}" width="100%" height="800px"></iframe>
+
+<div class="blog-github-link">
+    <ion-icon class ="github-icon" name="logo-github"></ion-icon>
+    <p><a href="https://github.com/nicolodijunior" target="_bank">https://github.com/nicolodijunior</a></p>
+</div>
+
+{% endblock %}

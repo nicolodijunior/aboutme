@@ -23,8 +23,8 @@ function update_post(post_id){
     .then(response => response.json())
     .then(data => {
         document.querySelector("#post_likes").textContent = data.likes_qty + " likes";
-        if(data.liked) document.querySelector("#like_post_btn").textContent = "dislike";
-        else document.querySelector("#like_post_btn").textContent = "like";
+        if(data.liked) document.querySelector("#like_post_btn").innerHTML = "<ion-icon name='heart-dislike-outline'></ion-icon>";
+        else document.querySelector("#like_post_btn").innerHTML = "<ion-icon name='heart-outline'></ion-icon>";
     })
     .catch(error => console.log(error));
 

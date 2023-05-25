@@ -9,18 +9,16 @@
             <div>{{ message }}</div>
         {% endif %}
     </div>
-    <form class="log_form" action="{% url 'login_v' %}" method="post">
-        <div class="form-outer">
+    <form class="log-form" action="{% url 'login_v' %}" method="post">        
             {% csrf_token %}
             <div class="form-container">
-                <label for="username">Username </label>
+                <label for="username" >User</label>
                 <input autofocus class="log_info" type="text" name="username" id="username" placeholder="Username">
-                <label for="password">Password </label>
+                <label for="password">Password</label>
                 <input id="password" class="log_info" type="password" name="password" placeholder="Password"> 
-            </div>  
-        </div> 
+            </div> 
         <div class="submit">  
-            <input class="post_btn login_btn" type="submit" value="Login">
+            <input class="log" type="submit" value="Login">
         </div>      
     </form>
     <div class="form_footer"> 

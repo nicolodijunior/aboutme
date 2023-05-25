@@ -7,7 +7,7 @@ from django.db import IntegrityError
 from django.http import JsonResponse
 from django.shortcuts import render
 from django.urls import reverse
-
+from django.http import FileResponse
 
 # Create your views here.
 
@@ -132,12 +132,13 @@ def login_v(request):
 
 @login_required
 def comment(request, post_id):
-    pass
-    """ if request.method == "POST":
+    if request.method == "POST":
         comment = request.POST["comment"]
         post = Post.objects.get(id=post_id)
         new_comment = Comment(user=request.user, text=comment, post=post)
         new_comment.save()
         return HttpResponseRedirect(reverse(""))
-    
- """
+
+def loadcv(request):
+    return render(request, "myhome/cv.html")
+ 
