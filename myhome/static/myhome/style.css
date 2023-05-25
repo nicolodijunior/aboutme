@@ -138,6 +138,11 @@ ul {
 
 main {
     padding: 2rem;
+    width: 100%;
+}
+
+iframe {
+    margin-bottom: 4rem;
 }
 
 .language-icons{
@@ -286,24 +291,49 @@ h2 {
     margin-bottom: 2rem;
 }
 
+#like_post_btn{
+    display:flex;
+    align-items: center;
+    padding:0.7rem;
+    margin-right: 2rem;
+    font-size: 3rem;
+    cursor:pointer;
+    background-color: #f07474;
+    color: #fff;
+}
+
+.blog-tags{
+    text-align: center;
+}
+
 .comment-form {
     /* background-color: #f07474; */
     display: flex;
     justify-content: center;
+    align-items: center;
+    flex-direction: column;
     margin-bottom: 4rem;
 }
 
-form {
-    width: 90%;
-    /* background-color: aqua; */
-    text-align: center;
+.form-container {
+    display: grid;
+    grid-template-columns: auto auto;
+    column-gap: 2rem;
+    row-gap: 1rem;
+    margin-bottom: 3rem;
 }
 
+label {
+    font-weight: 500;
+    font-size: 2.1rem;
+}
 
-.comment-form textarea {
-    min-height: 15rem;
-    border: 1px solid #000;
-    width: 100%;
+.log_info {
+}
+
+textarea {
+    border: 1px solid #000;    
+    width: 80%;
     margin-bottom:2rem;
     margin-top: 2rem;
 }
@@ -321,12 +351,17 @@ form {
 .blog-tags {
     margin-bottom: 4rem;
 }
-
+.log-form {
+    display:flex;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+}
 
 .github-icon {
     font-size: 5rem;
 }
-button, button:link, button:visited {
+.log, button, button:link, button:visited {
     padding:1rem 4rem;
     font-weight: 600;
     font-size: 1.5rem;
