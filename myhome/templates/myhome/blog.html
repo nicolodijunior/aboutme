@@ -63,13 +63,15 @@
     {% else %}
     <div class="message"><h4>Login to comment!</h4></div>
     {% endif %}
-    <div class="comments">
+    <div class="blog-text">
     {% for comment in p.get_comments %}
             <div class="comment">
-                <h3>{{ comment.user.username }}</h3><p>in {{ comment.date_time }}</p>
-                <p>{{ comment.text }}</p>
-                <p>Likes: {{ comment.likes.count }}</p>
-            </div>
+                <div class="posted-by">
+                    <h3 class="h3-posted-by"> Posted by {{ comment.user.username }} in </h3><p> &nbsp; {{ comment.date_time }}</p>
+                </div>
+                <p class="comment-text">{{ comment.text }}</p>
+<!--                 <p>Likes: {{ comment.likes.count }}</p>
+ -->            </div>
         {% empty %}
             <p>Be the first to comment.</p>
     {% endfor %}

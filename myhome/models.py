@@ -1,7 +1,7 @@
 
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-
+from django.db.models import F
 
 class User(AbstractUser):
     pass
@@ -22,7 +22,7 @@ class Post(models.Model):
     likes = models.ManyToManyField(User, blank=True, related_name="user_liked_posts", verbose_name="Comment Likes")
     
     def get_comments(self):
-        return self.post_comments.all()
+        return self.post_comments.order_by(F('date_time').desc())
     
 class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user_comments", verbose_name="Author")

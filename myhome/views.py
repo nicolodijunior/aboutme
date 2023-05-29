@@ -5,7 +5,7 @@ from django.core.paginator import Paginator
 from .models import Post, Category, User, Comment
 from django.db import IntegrityError
 from django.http import JsonResponse
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.http import FileResponse
 
@@ -137,7 +137,7 @@ def comment(request, post_id):
         post = Post.objects.get(id=post_id)
         new_comment = Comment(user=request.user, text=comment, post=post)
         new_comment.save()
-        return HttpResponseRedirect(reverse(""))
+        return redirect(request.META['HTTP_REFERER'])
 
 def loadcv(request):
     return render(request, "myhome/cv.html")
