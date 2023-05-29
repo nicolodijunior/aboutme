@@ -1,0 +1,14 @@
+finalproject/__pycache__/__init__.cpython-311.pyc
+finalproject/__pycache__/settings.cpython-311.pyc
+finalproject/__pycache__/urls.cpython-311.pyc
+finalproject/__pycache__/wsgi.cpython-311.pyc
+myhome/__pycache__/__init__.cpython-311.pyc
+myhome/__pycache__/admin.cpython-311.pyc
+myhome/__pycache__/apps.cpython-311.pyc
+myhome/__pycache__/models.cpython-311.pyc
+myhome/__pycache__/urls.cpython-311.pyc
+myhome/__pycache__/views.cpython-311.pyc
+myhome/migrations/__pycache__/__init__.cpython-311.pyc
+myhome/migrations/__pycache__/0001_initial.cpython-311.pyc
+myhome/migrations/__pycache__/0002_post_likes.cpython-311.pyc
+myhome/migrations/__pycache__/0003_alter_post_category.cpython-311.pyc
