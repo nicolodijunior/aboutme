@@ -73,7 +73,7 @@ body {
     display: flex;
     justify-content: center;
     width: 120rem;
-    margin: 3rem auto 0;
+    margin: 3rem auto 6rem;
 }
 
 a:link, a:visited {
@@ -436,4 +436,16 @@ textarea {
 
 .log_area {
     
+}
+
+/* FOOTER */
+
+.footer {
+    display:flex;
+    border-top:1px solid #eee;
+    padding: 5rem;
+}
+
+.footer p{
+    margin:0 auto;
 }
