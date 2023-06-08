@@ -72,7 +72,7 @@ body {
 .page-container {    
     display: flex;
     justify-content: center;
-    width: 120rem;
+    max-width: 120rem;
     margin: 3rem auto 6rem;
 }
 
@@ -97,6 +97,7 @@ p {
 aside {
     padding: 2rem;
     margin: 0.3rem;
+    max-width: 30%;
 }
 
 h1 {
@@ -135,6 +136,18 @@ ul {
     flex-direction: row;
 }
 
+.mobile-menu {
+    border:none;
+    cursor: pointer;
+    background-color: #fff;
+    display: none;
+}
+
+.mobile-icon {
+    height:4.8rem;
+    width: 4.8rem;
+}
+
 /* ABOUT ME */
 
 main {
@@ -170,12 +183,14 @@ iframe {
     box-shadow: 0 1.2rem 2.4rem rgba(0, 0, 0, 0.075);
     transition: all 0.4s;
     background-color: #f7f7f7;
-    max-width: 33%;
+    max-width: 30%;
 }
 
 .posts-miniatures {
     width: 100%;
     height: auto;
+    margin:0 auto;
+    justify-content: space-around;
 }
 
 .post-mini-item img {
@@ -183,8 +198,6 @@ iframe {
     height: 200px;
     display: block;
 }
-
-
 
 .post-mini-item:hover {
     transform: translateY(-1.2rem);
@@ -241,10 +254,16 @@ h5 {
     color: #f07474;
 }
 
+.msg {
+    background-color: #cc0000;
+    color: #e9ecef;
+    font-weight: 500;
+}
+
 h2 {
     font-size: 2.4rem;
     font-weight: 500;
-    margin-bottom: 4rem;
+    margin-bottom: 3rem;
 }
 
 .blog-header {
@@ -267,7 +286,6 @@ h2 {
     margin-bottom:4rem;
     font-size: 10rem;
     padding: 4rem;
-
 }
 
 .blog-img img{
@@ -331,19 +349,32 @@ h2 {
 
 .form-container {
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: 2fr 5fr;
     column-gap: 2rem;
     row-gap: 1rem;
     margin-bottom: 3rem;
 }
 
 label {
+    display:flex;
+    align-items: center;
     font-weight: 500;
     font-size: 2.1rem;
-}
 
+}
+.log_info:focus {
+    box-shadow: 0 0 2px 2px #567; /* Substitua "red" pela cor desejada */
+    outline:none;
+  }
 .log_info {
-    
+    width:100%;
+    border:none;
+    padding: 1.2rem;
+    font-size: 1.8rem;
+    background-color: #fdf2e9;
+    box-sizing: 0 1px 2px rgba(0,0,0,0.1);
+    border-radius: 9px;
+    font-family: inherit;
 }
 
 textarea {
@@ -376,7 +407,7 @@ textarea {
 .github-icon {
     font-size: 5rem;
 }
-.log, button, button:link, button:visited {
+.log, main button, main button:link, main button:visited {
     padding:1rem 4rem;
     font-weight: 600;
     font-size: 1.5rem;
@@ -444,6 +475,7 @@ textarea {
     display:flex;
     border-top:1px solid #eee;
     padding: 5rem;
+    text-align: center;
 }
 
 .footer p{

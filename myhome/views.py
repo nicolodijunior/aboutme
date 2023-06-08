@@ -13,8 +13,16 @@ from django.http import FileResponse
 
 
 def index(request):
-    posts_qty = Post.objects.all().count()
-    last_posts = Post.objects.order_by("-id")[:3]
+    try:
+        posts_qty = Post.objects.all().count()
+    except Post.DoesNotExist:
+        return JsonResponse({"error":"Post not found"}, status=404)
+    
+    try:
+        last_posts = Post.objects.order_by("-id")[:3]
+    except Post.DoesNotExist:
+        return JsonResponse({"error":"Post not found"}, status=404)
+
     return render(request, "myhome/index.html", {
         "posts_qty":posts_qty,
         "last_posts":last_posts,
@@ -32,10 +40,17 @@ def post(request):
 def blog(request, category):
     
     # Loading all posts to paginator
-    p = Paginator(Post.objects.all().order_by("-date_time"), 1)
+    try:
+        p = Paginator(Post.objects.all().order_by("-date_time"), 1)
+    except Post.DoesNotExist:
+        return JsonResponse({"error":"Post not found"}, status=404)
     page = request.GET.get('page')
     posts = p.get_page(page)
-    categories = Category.objects.all()
+    try:
+        categories = Category.objects.all()
+    except Category.DoesNotExist:
+        return JsonResponse({"error":"Category not found"}, status=404)
+    
     if category=="all":
         return render(request, "myhome/blog.html", {
             "posts":posts,
@@ -78,7 +93,11 @@ def register(request):
 @login_required
 def like_post(request, post_id):
     liked = False
-    p = Post.objects.get(id=post_id)
+    try:
+        p = Post.objects.get(id=post_id)
+    except Post.DoesNotExist:
+        return JsonResponse({"error":"Post not found"}, status=404)
+    
     user = request.user
     if p in user.user_liked_posts.all():
         user.user_liked_posts.remove(p)
@@ -134,7 +153,11 @@ def login_v(request):
 def comment(request, post_id):
     if request.method == "POST":
         comment = request.POST["comment"]
-        post = Post.objects.get(id=post_id)
+        try:
+            post = Post.objects.get(id=post_id)
+        except Post.DoesNotExist:
+            return JsonResponse({"error":"Category not found"}, status=404)
+
         new_comment = Comment(user=request.user, text=comment, post=post)
         new_comment.save()
         return redirect(request.META['HTTP_REFERER'])

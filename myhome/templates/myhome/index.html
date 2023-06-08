@@ -34,7 +34,6 @@
  
 
 <h2>Last projects</h2>
-
     <div class="posts-miniatures">
     {% for p in last_posts %}
         <div class="post-mini-item">
@@ -42,7 +41,7 @@
             <span class="post-mini-details">{{p.date_time}}</span>
             <h5>Tags: {{p.tags}}</h5>
             <div class="post-mini-content">
-                <p class="post-mini-text"> <b>{{p.title}}:</b>   {{ p.text|truncatewords:12 }} </p>
+                <p class="post-mini-text"> <b>{{p.title}}:</b>   {{ p.text|truncatewords:13 }} </p>
                 <p class="post-mini-text"><a href="{% url 'post' %}"><ion-icon name="add-circle-outline"></ion-icon> See more</a></p>
             </div>
         </div>

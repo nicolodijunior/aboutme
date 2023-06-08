@@ -6,7 +6,7 @@
         <ion-icon name="log-in-outline" class="icons"></ion-icon>
         <h1>Login</h1>
         {% if message %}
-            <div>{{ message }}</div>
+            <div class="msg"><p>{{ message }}</p></div>
         {% endif %}
     </div>
     <form class="log-form" action="{% url 'login_v' %}" method="post">        
