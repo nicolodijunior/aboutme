@@ -2,7 +2,9 @@
 
 {% block content %}
 <div class="blog-div">
+    {% if not event %}
     <div class="blog-menu"><a href="{% url 'blog' category='all' %}">All</a> {% for c in categories %} | <a href="{% url 'blog_cat' c.id %}"> {{c.name}} </a>{% endfor %}</div>
+    {% endif %}
     {% for p in posts %}
     <div class="blog-header">
         <ion-icon name="create-outline" class="icons"></ion-icon>
@@ -19,11 +21,17 @@
         <p>Login to like this post.</p>
         {% endif %}
     </div>
-    
+    {% if event %}
+    <div class="blog-text">
+        <h2>Sobre o evento...</h2>
+        <p> {{ p.text }}</p>
+    </div>
+    {% else %}
     <div class="blog-text">
         <h2>Sobre o projeto...</h2>
         <p> {{ p.text }}</p>
     </div>
+    {% endif %}
     <div class="blog-img">
         <img src="{{p.img_path}}">
     </div>
@@ -31,13 +39,17 @@
     <div class="blog-tags">
         <p><b>Tags </b>{{p.tags}}</p>
     </div>
+    {% if not event %}
     <div class="blog-github-link">
         <ion-icon class ="github-icon" name="logo-github"></ion-icon>
         <p>{{ p.github_link }}</p>
     </div>
+    {% endif %}
+    {% if not event %}
     <div class="blog-video">
         <iframe width="560" height="315" src="{{p.video_path}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
     </div>
+    {% endif %}
     <div class="center">
         <div class="div-pagination">
             {% if posts.has_previous %}

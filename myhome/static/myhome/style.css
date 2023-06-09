@@ -469,6 +469,11 @@ textarea {
     
 }
 
+
+.errorlist {
+    display: none;
+}
+
 /* FOOTER */
 
 .footer {

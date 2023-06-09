@@ -6,11 +6,44 @@
     <div class="blog-header">
         <ion-icon name="clipboard-outline" class="icons"></ion-icon>
         <h1>Register</h1>
-        {% if message %}
-            <div>{{ message }}</div>
+        <div class="msg"><p id="field-msg">
+            {% if form.errors %}
+            {% for field in form %}
+            {% for error in field.errors %}
+            {{ error }}
+            {% endfor %}
+            {% endfor %}
+            {% endif %}
+            {% if message %}
+            {{message}}
+            {% endif %}
+        </p></div>
+        <!-- {% if form.errors %}
+            <div class="msg"><p>
+            {% for field in form %}
+                {% for error in field.errors %}
+                    {{ error }}
+                {% endfor %}
+            {% endfor %}
+            </p></div>
         {% endif %}
+        {% if message %}
+            <div class="msg"><p>{{message}}</p></div>
+        {% endif %} -->
     </div>    
     <form class ="log-form" action="{% url 'register' %}" method="post" class="log_form">
+        <div class="form-container">
+        {% csrf_token %}
+        {{form}}
+        </div>
+        <div class="submit">  
+            <input id="register" class="log" type="submit" value="Register">
+        </div> 
+       <!--  <div class="field-msgs">
+            <p id="field-msg"></p>
+        </div> -->
+    </form>
+  <!--   <form class ="log-form" action="{% url 'register' %}" method="post" class="log_form">
         {% csrf_token %}
         <div class="form-container">
             <label for="username">Username</label>
@@ -28,6 +61,6 @@
         </div> 
     </form>
     <div class="form_footer">
-    </div>
+    </div> -->
 </div>
 {% endblock %}

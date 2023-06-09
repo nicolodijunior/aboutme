@@ -8,8 +8,34 @@ from django.http import JsonResponse
 from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.http import FileResponse
+from django import forms
 
 # Create your views here.
+
+class registerForm(forms.Form):
+    username = forms.CharField(label="Username", max_length=64)
+    email = forms.EmailField(label="Email", max_length=64)
+    password = forms.CharField(label="Password", max_length=64, widget=forms.PasswordInput)
+    confirmation = forms.CharField(label="Confirmation", max_length=64, widget=forms.PasswordInput)
+    #give a class for all inputs of the form to be able to style them
+    def __init__(self, *args, **kwargs):
+        super(registerForm, self).__init__(*args, **kwargs)
+        self.fields['username'].widget.attrs.update({'class': 'log_info'})
+        self.fields['email'].widget.attrs.update({'class': 'log_info'})
+        self.fields['password'].widget.attrs.update({'class': 'log_info'})
+        self.fields['confirmation'].widget.attrs.update({'class': 'log_info'})
+    
+    def clean_username(self):
+        username = self.cleaned_data["username"]
+        if User.objects.filter(username=username).exists():
+            raise forms.ValidationError("Username already taken.")
+        return username
+    
+    def clean_password(self):
+        password = self.cleaned_data["password"]
+        if len(password)<8:
+            raise forms.ValidationError("Password must be at least 8 characters long.")
+        return password
 
 
 def index(request):
@@ -40,23 +66,41 @@ def post(request):
 def blog(request, category):
     
     # Loading all posts to paginator
-    try:
-        p = Paginator(Post.objects.all().order_by("-date_time"), 1)
-    except Post.DoesNotExist:
-        return JsonResponse({"error":"Post not found"}, status=404)
-    page = request.GET.get('page')
-    posts = p.get_page(page)
-    try:
-        categories = Category.objects.all()
-    except Category.DoesNotExist:
-        return JsonResponse({"error":"Category not found"}, status=404)
-    
     if category=="all":
+        try:
+            p = Paginator(Post.objects.exclude(category__name="events").order_by("-date_time"), 1)
+        except Post.DoesNotExist:
+            return JsonResponse({"error":"Post not found"}, status=404)
+        page = request.GET.get('page')
+        posts = p.get_page(page)
+        try:
+            categories = Category.objects.exclude(name="events").all()
+        except Category.DoesNotExist:
+            return JsonResponse({"error":"Category not found"}, status=404)
+        
         return render(request, "myhome/blog.html", {
             "posts":posts,
             "categories":categories,
         })
     
+    if category=="events":
+        try:
+            p = Paginator(Post.objects.filter(category__name="events").order_by("-date_time"), 1)
+        except Post.DoesNotExist:
+            return JsonResponse({"error":"Post not found"}, status=404)
+        page = request.GET.get('page')
+        posts = p.get_page(page)
+        try:
+            categories = Category.objects.all()
+        except Category.DoesNotExist:
+            return JsonResponse({"error":"Category not found"}, status=404)
+        
+        return render(request, "myhome/blog.html", {
+            "posts":posts,
+            "categories":categories,
+            "event":True,
+        })
+        
 def blog_cat(request, id):
     category = Category.objects.get(id=id)   
     posts = category.category_posts.all()
@@ -68,27 +112,37 @@ def blog_cat(request, id):
 
 def register(request):
     if request.method == "POST":
-        username = request.POST["username"]
-        email = request.POST["email"]
-        password = request.POST["password"]
-        confirmation = request.POST["confirmation"]
-        if password != confirmation:
+        form = registerForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data["username"]
+            email = form.cleaned_data["email"]
+            password = form.cleaned_data["password"]
+            confirmation = form.cleaned_data["confirmation"]
+            if password != confirmation:
+                return render(request, "myhome/register.html", {
+                    "message":"Passwords do not match.",
+                    "form":form,
+                })
+            try:
+                user = User.objects.create_user(username, email, password)
+                user.save()
+            except IntegrityError as e:
+                print(e)
+                return render(request, "myhome/register.html", {
+                    "message": "Error creating account."
+                })
+            
+            login(request, user)
+            return HttpResponseRedirect(reverse("index"))       
+        else:
             return render(request, "myhome/register.html", {
-                "message":"Passwords do not match."
+                "form":form,
             })
-        try:
-            user = User.objects.create_user(username, email, password)
-            user.save()
-        except IntegrityError:
-            return render(request, "network/register.html", {
-                "message": "Username already taken or error creating profile."
-            })
-        
-        login(request, user)
-        return HttpResponseRedirect(reverse("index"))
-    
     else:
-        return render(request, "myhome/register.html")
+        form = registerForm()
+        return render(request, "myhome/register.html", {
+            "form":form,
+        })
  
 @login_required
 def like_post(request, post_id):
