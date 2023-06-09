@@ -25,6 +25,11 @@ It is possible to navigate to check all posts of each category. The categories a
 #### Django admin
     Djang admin made it a lot easier to edit, create or delete any new post. Using this functionality, admin can add new things without coding one line.
 
+#### Javascript
+    Javascript was used to make the blog functions. Like button and comments are updated using javascript, allowing just the part of the page of interest, to be uploaded. 
+#### Python
+    All the backend is made with python using Django. Django allows a very friendly way to send informations to the frontend and to work with them. Most of the functionality was made using Django, except the assyncronus parts, where javascript was used.
+
 #### Distinctiveness and Complexity
 
     This project is different of all course´s projects. This application uses the advantages of Django admin to help a developer to publish it´s codes in a different way. Mixing a blog, with a portfolio´s website and a social network, it is possible to show the codes, videos an informations about the applciation but also to cnnect with user and collect feedback. 
