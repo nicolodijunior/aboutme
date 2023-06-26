@@ -54,11 +54,12 @@ def index(request):
         "last_posts":last_posts,
     })
 
-def post(request):
-    post_id = 1
+def post(request, post_id):
     posts = Post.objects.filter(id=post_id)
+    is_event = posts.first().category.name == "Events"
     categories = Category.objects.all()
     return render(request, "myhome/blog.html", {
+            "event":is_event,
             "posts":posts,
             "categories":categories,
         })
@@ -68,13 +69,13 @@ def blog(request, category):
     # Loading all posts to paginator
     if category=="all":
         try:
-            p = Paginator(Post.objects.exclude(category__name="events").order_by("-date_time"), 1)
+            p = Paginator(Post.objects.exclude(category__name="Events").order_by("-date_time"), 1)
         except Post.DoesNotExist:
             return JsonResponse({"error":"Post not found"}, status=404)
         page = request.GET.get('page')
         posts = p.get_page(page)
         try:
-            categories = Category.objects.exclude(name="events").all()
+            categories = Category.objects.exclude(name="Events").all()
         except Category.DoesNotExist:
             return JsonResponse({"error":"Category not found"}, status=404)
         
@@ -83,9 +84,9 @@ def blog(request, category):
             "categories":categories,
         })
     
-    if category=="events":
+    if category=="Events":
         try:
-            p = Paginator(Post.objects.filter(category__name="events").order_by("-date_time"), 1)
+            p = Paginator(Post.objects.filter(category__name="Events").order_by("-date_time"), 1)
         except Post.DoesNotExist:
             return JsonResponse({"error":"Post not found"}, status=404)
         page = request.GET.get('page')
@@ -103,8 +104,8 @@ def blog(request, category):
         
 def blog_cat(request, id):
     category = Category.objects.get(id=id)   
-    posts = category.category_posts.all()
-    categories = Category.objects.all()
+    posts = category.category_posts.exclude(id="4").all()
+    categories = Category.objects.exclude(name="Events").all()
     return render(request, "myhome/blog.html", {
             "posts":posts,
             "categories":categories,

@@ -9,7 +9,7 @@
 </div>
 <div class="blog-text">
     <h2>Besides jumping air-planes, what do I like ?.</h2>
-    <p>I love technology, problem solving and learning new things. I have worked as a product developer and commercial director. Now I am a software engineering student and chaning my career to work as a developer. Check my curriculum and projects to see more!</p>
+    <p>I love technology, problem solving and learning new things. I have worked as a product developer and commercial director. Now I am a software engineering student and my goal is to work as a fullstack developer. Check my curriculum and projects to see more!</p>
 </div>
 <div class="blog-languages">
 <!--     <h2>Here You will find projects developed with</h2>
@@ -33,7 +33,7 @@
 
  
 
-<h2>Last projects</h2>
+<h2>Last projects and events</h2>
     <div class="posts-miniatures">
     {% for p in last_posts %}
         <div class="post-mini-item">
@@ -41,8 +41,8 @@
             <span class="post-mini-details">{{p.date_time}}</span>
             <h5>Tags: {{p.tags}}</h5>
             <div class="post-mini-content">
-                <p class="post-mini-text"> <b>{{p.title}}:</b>   {{ p.text|truncatewords:13 }} </p>
-                <p class="post-mini-text"><a href="{% url 'post' %}"><ion-icon name="add-circle-outline"></ion-icon> See more</a></p>
+                <p class="post-mini-text"> <b>{{p.title}}:</b>   {{ p.text|truncatechars:69 }} </p>
+                <p class="post-mini-text"><a href="{% url 'post' p.id %}"><ion-icon name="add-circle-outline"></ion-icon> See more</a></p>
             </div>
         </div>
     {% endfor %}

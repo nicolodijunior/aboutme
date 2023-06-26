@@ -9,13 +9,13 @@ Any visitors can register to comment and like posts, events or projects.
 Javascript, css, html, python and Django were used.
 
 #### Bio Page
-The bio page is a symple html and css page showing a little bit more about me, with the three last projects, that can be visited. This way the user is already attracted to the most important part of the website.
+The bio page is a symple html and css page showing a little bit more about me, with the three last projects, that can be visited. This way the user is already attracted to the most important part of the website. The las projects and events are updated automatically when new ones are created.
 
 #### CV
-This page just loads a pdf, therefore a CV is an important part of the informations for someone looking for a job.
+This page just loads a pdf, as a CV is an important part of the informations for someone looking for a job.
 
 #### Projects
-The project section and the events section are similar. Projects are divided in categories, and event is one of them. Projects have a text, tags, an image, a video and a github project. It becomes easy to add new projects and they will be displayed in the portfolio website, witouth needing to code a new html page. This is made through the django admin.
+Projects are divided in categories, and event is one of them. Projects have a text, tags, an image, a video and a github project. It becomes easy to add new projects and they will be displayed in the portfolio website, witouth needing to code a new html page. This is made through the django admin.
 The project can be liked by users or commented. Each page displays one project, and a paginator does the rest to show each project in one page.
 It is possible to navigate to check all posts of each category. The categories are also in the models.py, making it easy to create new categories.
 
